@@ -49,3 +49,20 @@ color: black;
     transform: translateY(0);
     pointer-events: auto;
 }
+
+.information-grid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 2rem;
+}
+
+.dropdown-links {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.dropdown-heading {
+    padding-bottom: .25rem;
+    font-size: 1.2rem;
+}
