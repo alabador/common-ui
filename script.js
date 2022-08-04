@@ -1,3 +1,4 @@
+/*Dropdown JS*/
 document.addEventListener('click', e => {
     //creates a variable if the target matches the data attribute
     const isDropDownButton = e.target.matches("[data-dropdown-button]");
@@ -28,4 +29,35 @@ document.addEventListener('click', e => {
         }
         dropdown.classList.remove('active');
     })
+})
+
+/*Slider Logic*/
+const sliderContainer = document.querySelector('.image-slider-container');
+let currentSlideIndex = 0;
+
+sliderContainer.addEventListener('click', e => {
+    const slides = document.querySelectorAll('.slide');
+    const selectors = document.querySelectorAll('.selector-circle');
+    const numberOfSlides = slides.length;
+    
+    const isRightArrow = e.target.matches('.arrow-right, .fa-arrow-circle-right');
+    const isLeftArrow = e.target.matches('.arrow-left, .fa-arrow-circle-left');
+
+
+    if (isRightArrow){
+        currentSlideIndex++;
+        if (currentSlideIndex > numberOfSlides - 1){currentSlideIndex = 0};
+        slides.forEach(slide => {slide.classList.remove('active')});
+        selectors.forEach(selector => {selector.classList.remove('current')});
+        slides[currentSlideIndex].classList.add('active');
+        selectors[currentSlideIndex].classList.add('current');
+    }
+    else if(isLeftArrow){
+        currentSlideIndex--;
+        if (currentSlideIndex < 0){currentSlideIndex = 2};
+        slides.forEach(slide => {slide.classList.remove('active')});
+        selectors.forEach(selector => {selector.classList.remove('current')});
+        slides[currentSlideIndex].classList.add('active');
+        selectors[currentSlideIndex].classList.add('current');
+    }
 })
