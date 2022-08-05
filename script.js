@@ -50,25 +50,25 @@ sliderContainer.addEventListener('click', e => {
     if (isRightArrow){
         currentSlideIndex++;
         if (currentSlideIndex > numberOfSlides - 1){currentSlideIndex = 0};
-        frame.style.transition = "transform 0.75s ease-in-out";
-        frame.style.transform = 'translateX(' + (-size * currentSlideIndex) + 'px)';
-
-        selectors.forEach(selector => {selector.classList.remove('current')});
-        selectors[currentSlideIndex].classList.add('current');
+        changeSlide();
     }
     else if(isLeftArrow){
         currentSlideIndex--;
         if (currentSlideIndex < 0){currentSlideIndex = 2};
 
-        frame.style.transition = "transform 0.75s ease-in-out";
-        frame.style.transform = 'translateX(' + (-size * currentSlideIndex) + 'px)';
-
-        selectors.forEach(selector => {selector.classList.remove('current')});
-        selectors[currentSlideIndex].classList.add('current');
+        changeSlide();
     }
     
     
 });
+
+function changeSlide() {
+    frame.style.transition = "transform 0.75s ease-in-out";
+    frame.style.transform = 'translateX(' + (-size * currentSlideIndex) + 'px)';
+
+    selectors.forEach(selector => {selector.classList.remove('current')});
+    selectors[currentSlideIndex].classList.add('current');
+}
 
 selectors.forEach((selector, index) => {
     selector.addEventListener('click', function(){
@@ -81,5 +81,11 @@ selectors.forEach((selector, index) => {
 });
 
 function autoSlide() {
-    
+    setInterval(function() {
+        currentSlideIndex++;
+        if (currentSlideIndex > numberOfSlides - 1){currentSlideIndex = 0};
+        changeSlide();
+    }, 5000);
 };
+
+window.onload = autoSlide();
