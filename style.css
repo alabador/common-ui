@@ -180,6 +180,7 @@ color: black;
     border: none;
     background-color: var(--cta-color);
     color: white;
+    font-weight: 700;
 }
 
 .current {
