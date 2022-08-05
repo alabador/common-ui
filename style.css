@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+:root {
+    --cta-color: rgb(36, 153, 231);
+}
+
 body {
     margin: 0;
     overflow-x: hidden;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 .header {
@@ -90,6 +97,7 @@ color: black;
     width: 100%;
     flex-shrink: 0;
     height: 100%;
+    position: relative;
 }
 
 .slider-image {
@@ -147,26 +155,34 @@ color: black;
     object-fit: cover;
 }
 
-/*Current Slide*/
-.active {
-    display: inline-block;
-    transform: translate(0,0);
-    /* animation-duration: 500ms;
-    animation-name: slidein;
-    animation-timing-function: ease-in-out; */
+.slide-title {
+    position: absolute;
+    color: white;
+    top: 0;
+    right: 0;
+    bottom: 10%;
+    left: 0;
+    margin: auto;
+    height: 100px;
+    width: 400px;
+    text-align: center;
+    font-size: 36px;
 }
 
-@keyframes slidein {
-    from {
-        margin-left: 100%;
-    }
-
-    to {
-        margin-left: 0%;
-    }
+.slide-cta {
+    position: absolute;
+    bottom: 20%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 48px;
+    width: 120px;
+    border: none;
+    background-color: var(--cta-color);
+    color: white;
 }
 
 .current {
-    background-color: rgb(36, 153, 231);
+    background-color: var(--cta-color);
 }
 

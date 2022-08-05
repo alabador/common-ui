@@ -72,11 +72,8 @@ function changeSlide() {
 
 selectors.forEach((selector, index) => {
     selector.addEventListener('click', function(){
-        frame.style.transition = "transform 0.75s ease-in-out";
-        frame.style.transform = 'translateX(' + (-size * index) + 'px)';
-        
-        selectors.forEach(selector => {selector.classList.remove('current')});
-        selectors[index].classList.add('current');
+        currentSlideIndex = index;
+        changeSlide();
     })
 });
 
