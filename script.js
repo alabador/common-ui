@@ -33,13 +33,16 @@ document.addEventListener('click', e => {
 
 /*Slider Logic*/
 const sliderContainer = document.querySelector('.image-slider-container');
-let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const selectors = document.querySelectorAll('.selector-circle');
+const frame = document.querySelector('.slide-frame');
 
+let currentSlideIndex = 0;
+const size = slides[0].clientWidth;
+const numberOfSlides = slides.length;
+
+//Listeners
 sliderContainer.addEventListener('click', e => {
-    const slides = document.querySelectorAll('.slide');
-    const selectors = document.querySelectorAll('.selector-circle');
-    const numberOfSlides = slides.length;
-    
     const isRightArrow = e.target.matches('.arrow-right, .fa-arrow-circle-right');
     const isLeftArrow = e.target.matches('.arrow-left, .fa-arrow-circle-left');
 
@@ -47,17 +50,36 @@ sliderContainer.addEventListener('click', e => {
     if (isRightArrow){
         currentSlideIndex++;
         if (currentSlideIndex > numberOfSlides - 1){currentSlideIndex = 0};
-        slides.forEach(slide => {slide.classList.remove('active')});
+        frame.style.transition = "transform 0.75s ease-in-out";
+        frame.style.transform = 'translateX(' + (-size * currentSlideIndex) + 'px)';
+
         selectors.forEach(selector => {selector.classList.remove('current')});
-        slides[currentSlideIndex].classList.add('active');
         selectors[currentSlideIndex].classList.add('current');
     }
     else if(isLeftArrow){
         currentSlideIndex--;
         if (currentSlideIndex < 0){currentSlideIndex = 2};
-        slides.forEach(slide => {slide.classList.remove('active')});
+
+        frame.style.transition = "transform 0.75s ease-in-out";
+        frame.style.transform = 'translateX(' + (-size * currentSlideIndex) + 'px)';
+
         selectors.forEach(selector => {selector.classList.remove('current')});
-        slides[currentSlideIndex].classList.add('active');
         selectors[currentSlideIndex].classList.add('current');
     }
-})
+    
+    
+});
+
+selectors.forEach((selector, index) => {
+    selector.addEventListener('click', function(){
+        frame.style.transition = "transform 0.75s ease-in-out";
+        frame.style.transform = 'translateX(' + (-size * index) + 'px)';
+        
+        selectors.forEach(selector => {selector.classList.remove('current')});
+        selectors[index].classList.add('current');
+    })
+});
+
+function autoSlide() {
+    
+};
